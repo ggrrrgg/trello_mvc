@@ -10,8 +10,9 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
 
 class UserSchema(ma.Schema):
+    cards = fields.List(fields.Nested('CardSchema', exclude=['user']))
     class Meta:
-        fields = ('id', 'name', 'email', 'password', 'is_admin')
+        fields = ('id', 'name', 'email', 'password', 'is_admin', 'cards')
 
 user_schema = UserSchema(exclude=['password'])
 users_schema = UserSchema(many=True, exclude=['password'])

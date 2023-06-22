@@ -1,4 +1,5 @@
 from init import db, ma
+from marshmallow import fields
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -8,6 +9,8 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
+
+    cards = db.relationship('Card', back_populates='user', cascade='all, delete')
 
 class UserSchema(ma.Schema):
     cards = fields.List(fields.Nested('CardSchema', exclude=['user']))

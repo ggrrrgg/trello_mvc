@@ -1,7 +1,6 @@
 from init import db, ma
 from marshmallow import fields
 
-
 class Card(db.Model):
     __tablename__ = "cards"
 

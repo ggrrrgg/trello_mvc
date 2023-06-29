@@ -43,3 +43,4 @@ def auth_login():
         return { 'email': user.email, 'token': token, 'is_admin': user.is_admin }
     else:
         return { 'error': 'Invalid email or password' }, 401
+    
